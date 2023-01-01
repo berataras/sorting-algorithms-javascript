@@ -1,11 +1,8 @@
-function swap(arr, xp, yp)
-{
-    let temp = arr[xp]; // 30'un yerine 1 geçmeden önce 30 temp içerisine atılıyor.
-    arr[xp] = arr[yp]; // 1, 30'un index'ine atılıyor. Çünkü swap olmak zorundalar.
-    arr[yp] = temp; // daha sonrasında 30 nihayetinde 1'in index'ine atılıyor ve yer değiştirmiş oluyorlar.
-}
+/*
+* Bubble Sort, yan yana olan element’leri tekrar tekrar yer değiştirerek çalışan en basit sıralama algoritmasıdır.
+* Bu algoritma büyük veriler için uygun değildir. Average ve worst-case time complexity’leri oldukça yüksektir.
+*/
 
-// An optimized version of Bubble Sort
 function bubbleSort(arr, n){
     /*
     * 0'dan başlayıp n-1'e kadar yani 5 adım atacak.
@@ -30,7 +27,7 @@ function bubbleSort(arr, n){
                 /*
                 * Daha sonra tekrar başa dönüyor ve bu sefer i döngüsü 1. index'ten yani 30'dan devam ediyor.
                 * j döngüsü n-i-1 hesaplamasından sonra geriye 5 adım kaldığını bilmiş oluyoruz.
-                * yani 30 dan sonrasına bakacak olursak 11,22,34,4345,-1
+                * yani 30 dan sonrasına bakacak olursak 11,22,34,43,-1
                 */
             }
         }
@@ -38,7 +35,15 @@ function bubbleSort(arr, n){
     return arr;
 }
 
-const myArray = [30, 1, 11, 22, 34, 4345, -1];
+function swap(arr, xp, yp)
+{
+    let temp = arr[xp]; // 30'un yerine 1 geçmeden önce 30 temp içerisine atılıyor.
+    arr[xp] = arr[yp]; // 1, 30'un index'ine atılıyor. Çünkü swap olmak zorundalar.
+    arr[yp] = temp; // daha sonrasında 30 nihayetinde 1'in index'ine atılıyor ve yer değiştirmiş oluyorlar.
+}
+
+
+const myArray = [30, 1, 11, 22, 34, 43, -1];
 
 const toBubbleSort = bubbleSort(myArray, myArray.length);
 
