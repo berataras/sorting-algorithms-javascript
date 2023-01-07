@@ -3,31 +3,31 @@
 // Merges two subarrays of arr[].
 // First subarray is arr[l..m]
 // Second subarray is arr[m+1..r]
-function merge(arr, l, m, r)
-{
-    let n1 = m - l + 1;
-    let n2 = r - m;
+function merge(arr, begin, mid, end) {
 
-    // Create temp arrays
+    let n1 = mid - begin + 1;
+    let n2 = end - mid;
+
+    // temp array'ler oluşturuluyor.
     let L = new Array(n1);
     let R = new Array(n2);
 
-    // Copy data to temp arrays L[] and R[]
+    // Data temp array'lere kopyalanıyor.
     for (let i = 0; i < n1; i++)
-        L[i] = arr[l + i];
+        L[i] = arr[begin + i];
     for (let j = 0; j < n2; j++)
-        R[j] = arr[m + 1 + j];
+        R[j] = arr[mid + 1 + j];
 
-    // Merge the temp arrays back into arr[l..r]
+    // Merge the temp arrays back into arr[begin..end]
 
-    // Initial index of first subarray
+    // Birinci subarray'in index'i
     let i = 0;
 
-    // Initial index of second subarray
+    // İkinci subarray'in index'i
     let j = 0;
 
-    // Initial index of merged subarray
-    let k = l;
+    // Birleştirilen subarray'in index'i
+    let k = begin;
 
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
@@ -58,18 +58,14 @@ function merge(arr, l, m, r)
     }
 }
 
-// l is for left index and r is
-// right index of the sub-array
-// of arr to be sorted */
-function mergeSort(arr,l, r){
-    if(l>=r){
-        return;//returns recursively
+function mergeSort(arr, begin, end){
+    if(begin >= end){
+        return; //array en küçük parçasına bölündüğünde boş return dönüyor.
     }
-    let m =l+ parseInt((r-l)/2);
-    mergeSort(arr,l,m);
-    mergeSort(arr,m+1,r);
-    merge(arr,l,m,r);
-
+    let mid = begin + parseInt((end-begin)/2); //array'in ortası bulunuyor.
+    mergeSort(arr, begin, mid); //array'in başından yarısına [30, 1, 11, 22]
+    mergeSort(arr, mid + 1, end); //array'in ortasından + 1 ve sonuna [34, 43, -1]
+    merge(arr, begin, mid, end); // bölünme bittiğinde merge işlemi başlıyor.
     return arr;
 }
 
